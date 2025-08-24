@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>법령 정보 포털(정적)</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="wrap topbar">
+      <div class="logo">
+        <span class="logo__mark">⚖️</span>
+        <span class="logo__text">법령 포털</span>
+        <span class="badge">STATIC</span>
+      </div>
+
+      <form id="searchForm" class="searchbar" autocomplete="off">
+        <input id="q" class="input" type="search" placeholder="법령명·키워드 검색" />
+        <button class="btn btn--primary" type="submit" aria-label="검색">검색</button>
+        <button class="btn" type="button" id="resetBtn">초기화</button>
+      </form>
+
+      <div class="filters">
+        <select id="fType" title="법령 종류">
+          <option value="">종류(전체)</option>
+          <option>법률</option><option>대통령령</option><option>총리령</option><option>부령</option>
+        </select>
+        <select id="fStatus" title="시행 상태">
+          <option value="">상태(전체)</option>
+          <option>시행</option><option>폐지</option><option>일부시행</option>
+        </select>
+        <select id="fMinistry" title="소관 부처">
+          <option value="">부처(전체)</option>
+          <option>법무부</option><option>국토교통부</option><option>기획재정부</option>
+        </select>
+        <select id="fSort" title="정렬">
+          <option value="rel">관련도</option>
+          <option value="rev">최신개정순</option>
+          <option value="abc">가나다순</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap main">
+    <aside class="panel panel--left">
+      <div class="panel__head">
+        <h2>검색 결과 <span id="resultCount" class="muted">(0)</span></h2>
+      </div>
+      <ul id="resultList" class="list"></ul>
+
+      <div class="pager" id="pager" hidden>
+        <button class="btn" data-page="prev">이전</button>
+        <span id="pageInfo" class="muted">1 / 1</span>
+        <button class="btn" data-page="next">다음</button>
+      </div>
+    </aside>
+
+    <section class="panel panel--right">
+      <div class="panel__head">
+        <h2 id="lawTitle">조문 뷰어</h2>
+        <div class="head-actions">
+          <button class="btn" id="bookmarkBtn" disabled>★ 즐겨찾기</button>
+          <button class="btn" id="printBtn" disabled>인쇄</button>
+          <button class="btn" id="exportBtn" disabled>JSON 내보내기</button>
+        </div>
+      </div>
+
+      <div id="lawMeta" class="meta"></div>
+
+      <div class="tabs">
+        <div class="tablist" role="tablist" aria-label="조문 탭">
+          <button class="tab is-active" data-tab="toc">목차</button>
+          <button class="tab" data-tab="articles">조문</button>
+          <button class="tab" data-tab="history">개정이력</button>
+          <div class="spacer"></div>
+          <select id="versionSelect" title="버전 선택" disabled>
+            <option>버전(최신)</option>
+          </select>
+        </div>
+
+        <div id="tabPanel" class="tabpanel">
+          <div data-panel="toc"></div>
+          <div data-panel="articles" hidden></div>
+          <div data-panel="history" hidden></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap footer">
+    <div>© 정적 데모 — 데이터는 사용자 제공</div>
+    <div>
+      <button id="viewBookmarks" class="btn">즐겨찾기 보기</button>
+      <button id="clearBookmarks" class="btn">즐겨찾기 초기화</button>
+    </div>
+  </footer>
+
+  <template id="resultItemTpl">
+    <li class="card">
+      <button class="card__body" data-id="">
+        <div class="card__head">
+          <span class="pill" data-type></span>
+          <strong class="card__title" data-title></strong>
+        </div>
+        <p class="card__summary" data-summary></p>
+        <div class="card__meta">
+          <span data-status></span>
+          <span data-ministry></span>
+          <span data-rev></span>
+        </div>
+      </button>
+    </li>
+  </template>
+
+  <script src="./app.js"></script>
+</body>
+</html>
