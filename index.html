@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>법령 정보 포털</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="wrap topbar">
+      <div class="logo">법령 포털 <span class="badge">Beta</span></div>
+      <nav class="menu">
+        <a href="index.html" class="active">홈</a>
+        <a href="law/index.html">법령</a>
+        <a href="local/index.html">자치법규</a>
+        <a href="gyu/index.html">행정규칙</a>
+        <a href="court/index.html">판례</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="search">
+      <h2>검색</h2>
+      <form id="searchForm">
+        <input type="text" id="searchInput" placeholder="검색...">
+        <button type="submit">검색</button>
+      </form>
+      <div id="searchResult"></div>
+    </section>
+
+    <section id="latest">
+      <h2>최신 업데이트</h2>
+      <ul id="latest-list" class="list"></ul>
+    </section>
+  </main>
+
+  <footer class="footer wrap">
+    © 2025 법령 정보 포털
+  </footer>
+</body>
+</html>
